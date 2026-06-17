@@ -7,6 +7,7 @@ from app import models
 
 
 from app.schemas.student import StudentCreate
+from app.services.student_service import create_student, get_students
 
 # create tables
 Base.metadata.create_all(bind=engine)
@@ -28,16 +29,17 @@ def health():
     return {"status": "healthy"}
 
 
+# ======================
 # CREATE STUDENT
+# ======================
 @app.post("/students")
-def create_student(student: StudentCreate, db: Session = Depends(get_db)):
-    new_student = Student(
-        student_id=student.student_id,
-        name=student.name
-    )
+def add_student(student: StudentCreate, db: Session = Depends(get_db)):
+    return create_student(db, student.student_id, student.name)
 
-    db.add(new_student)
-    db.commit()
-    db.refresh(new_student)
 
-    return new_student
+# ======================
+# GET STUDENTS
+# ======================
+@app.get("/students")
+def list_students(db: Session = Depends(get_db)):
+    return get_students(db)
