@@ -71,6 +71,7 @@ dependencies = [
     "pywin32-ctypes==0.2.3 ; sys_platform == 'win32'",
     "pyyaml==6.0.3",
     "referencing==0.37.0",
+    "reportlab>=4.5.1",
     "rich==15.0.0",
     "rich-rst==2.0.1",
     "rpds-py==2026.5.1",

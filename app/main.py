@@ -6,6 +6,8 @@ from app.routes.student import router as student_router
 from app.routes.subject import router as subject_router
 
 from app.routes.exam import router as exam_router
+from app.routes.mark import router as mark_router
+from app.routes.report import router as report_router
 
 
 # create tables
@@ -24,6 +26,10 @@ app.include_router(subject_router, prefix="/subjects",
                    tags=["Subjects"])
 
 app.include_router(exam_router, prefix="/exams", tags=["Exams"])
+
+app.include_router(mark_router)
+app.include_router(report_router)
+
 
 
 @app.get("/")
